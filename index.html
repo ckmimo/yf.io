@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致我心中的你 | 爱的告白</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+        }
+        
+        /* 星空背景 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        /* 页眉样式 */
+        header {
+            margin-bottom: 50px;
+            animation: fadeIn 2s ease;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb6b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #ffd6d6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 心跳动画 */
+        .heart-icon {
+            font-size: 5rem;
+            color: #ff6b6b;
+            animation: heartbeat 1.5s infinite;
+            margin: 30px 0;
+            display: block;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .heart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1.15); }
+            75% { transform: scale(1.05); }
+        }
+        
+        /* 消息框 */
+        .message-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .message-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .message p {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .message p::before {
+            content: "❤";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ff6b6b;
+        }
+        
+        /* 按钮样式 */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* 记忆时间线 */
+        .timeline {
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: linear-gradient(to bottom, #ff6b6b, #ff8e8e);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: 3px solid #ff6b6b;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            border-right: 3px solid #ff8e8e;
+        }
+        
+        .timeline-content h3 {
+            color: #ffb6b6;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .timeline-content p {
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -39px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -39px;
+        }
+        
+        /* 页脚 */
+        footer {
+            margin-top: 80px;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 特殊效果 */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: float-up linear forwards;
+            pointer-events: none;
+        }
+        
+        @keyframes float-up {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .message { font-size: 1.1rem; padding: 15px; }
+            .btn { padding: 14px 35px; font-size: 1.1rem; }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item, .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 40px;
+            }
+            
+            .timeline-content::before {
+                left: -39px;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                border-right: none;
+                border-left: 3px solid #ff8e8e;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- 漂浮爱心容器 -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <header>
+            <div class="heart-icon" id="mainHeart">❤</div>
+            <h1><span id="typedTitle">亲爱的<span class="name" id="loverName">杨菲</span>...</span></h1>
+            <p class="subtitle">这是我为你准备的特别心意</p>
+        </header>
+        
+        <main>
+            <div class="message-box">
+                <div class="message" id="loveMessage">
+                    <p>从遇见你的那天起，我的世界开始有了不同的色彩。你的笑容像阳光一样温暖，你的声音是我最爱的旋律。</p>
+                    <p>每次和你在一起，时间总是过得特别快，而分开后的每一秒又显得格外漫长。我发现自己越来越期待见到你，越来越珍惜和你相处的每一刻。</p>
+                    <p>今天，我想鼓起勇气告诉你：<strong>我喜欢你</strong>，比朋友更多的那种喜欢。你愿意给我一个机会，让我陪你走过未来的每一天吗？</p>
+                </div>
+            </div>
+            
+            <!-- 记忆时间线 -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第一次相遇</h3>
+                        <p>那天阳光正好，你飞奔着从我身边掠过，笑容像春天的花朵一样绽放。那一刻，我就知道遇见你是命运的安排。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第一次交谈</h3>
+                        <p>我们聊了好久好久，时间仿佛静止了。你的每一个想法都让我着迷，你的笑声是我听过最美妙的音乐。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第一次心动</h3>
+                        <p>当看到月光下仰望星空的你时，我感受到了从未有过的心动。月光照亮了你轮廓，却点亮了我的心。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>第一次思念</h3>
+                        <p>分别后的第一个夜晚，我辗转难眠。闭上眼睛都是你的笑容，我知道我已经深深喜欢上你了。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 互动按钮 -->
+            <div class="btn-group">
+                <button class="btn" id="yesBtn">我愿意！❤️</button>
+                <button class="btn" id="specialBtn">查看情书</button>
+                <button class="btn" id="musicBtn">播放音乐</button>
+            </div>
+        </main>
+        
+        <footer>
+            <p>用心制作 · 只为你一人 | ❤️ 用代码书写爱的语言</p>
+            <p>每个像素都代表我的心意 | 每行代码都蕴含我的真情</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 创建星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机属性
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = Math.random() * 5 + 3;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${posX}vw`;
+                star.style.top = `${posY}vh`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // 创建漂浮爱心
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('floating-heart');
+                    heart.innerHTML = '❤';
+                    
+                    // 随机属性
+                    const size = Math.random() * 30 + 20;
+                    const posX = Math.random() * 100;
+                    const duration = Math.random() * 5 + 3;
+                    
+                    heart.style.fontSize = `${size}px`;
+                    heart.style.left = `${posX}vw`;
+                    heart.style.bottom = `-50px`;
+                    heart.style.animationDuration = `${duration}s`;
+                    heart.style.opacity = Math.random() * 0.5 + 0.5;
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    // 动画结束后移除
+                    setTimeout(() => {
+                        heart.remove();
+                    }, duration * 1000);
+                }, i * 300);
+            }
+        }
+        
+        // 按钮交互效果
+        function setupButtons() {
+            const yesBtn = document.getElementById('yesBtn');
+            const specialBtn = document.getElementById('specialBtn');
+            const musicBtn = document.getElementById('musicBtn');
+            const mainHeart = document.getElementById('mainHeart');
+            const messageBox = document.querySelector('.message-box');
+            let audio = null;
+            
+            // "我愿意"按钮
+            yesBtn.addEventListener('click', function() {
+                messageBox.innerHTML = `
+                    <div class="message">
+                        <h2 style="text-align:center;margin-bottom:20px;color:#ff6b6b">🎉 太棒了！ 🎉</h2>
+                        <p>这是我生命中最幸福的时刻！</p>
+                        <p>从今天起，我承诺：</p>
+                        <ul style="margin: 20px 0; padding-left: 30px;">
+                            <li>每天清晨的第一声问候</li>
+                            <li>困难时坚定的陪伴</li>
+                            <li>快乐时加倍的分享</li>
+                            <li>永远做你最温暖的港湾</li>
+                        </ul>
+                        <p style="text-align: center; margin-top: 30px; font-size: 1.5rem; color: #ff6b6b">
+                            ❤️ 余生请多指教 ❤️
+                        </p>
+                    </div>
+                `;
+                
+                // 触发爱心雨
+                createFloatingHearts();
+                
+                // 改变主心颜色和大小
+                mainHeart.style.color = '#ff0000';
+                mainHeart.style.fontSize = '6rem';
+                mainHeart.style.animation = 'none';
+                setTimeout(() => {
+                    mainHeart.style.animation = 'heartbeat 1.5s infinite';
+                }, 10);
+                
+                // 添加更多漂浮爱心
+                setInterval(createFloatingHearts, 1000);
+            });
+            
+            // "查看情书"按钮
+            specialBtn.addEventListener('click', function() {
+                messageBox.innerHTML = `
+                    <div class="message">
+                        <h3 style="text-align:center;margin-bottom:20px;color:#ff8e8e">💌 给特别的你：</h3>
+                        <p style="text-align: center; font-style: italic; line-height: 2; font-size: 1.2rem;">
+                        "在千万人中遇见你，<br>
+                        是我此生最大的幸运。<br>
+                        你的眼眸中有星辰大海，<br>
+                        你的笑容能融化冬日寒冰。<br>
+                        愿以余生为笔，以真心为墨，<br>
+                        与你共写属于我们的故事。"
+                        </p>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <span style="display: inline-block; animation: heartbeat 1.5s infinite; font-size: 2rem;">❤️</span>
+                        </div>
+                        <p style="text-align:right;margin-top:30px; font-weight: bold; color: #ff8e8e">
+                            —— 永远爱你的<span id="yourName">我</span>
+                        </p>
+                    </div>
+                `;
+            });
+            
+            // "播放音乐"按钮
+            musicBtn.addEventListener('click', function() {
+                if (!audio) {
+                    audio = new Audio('https://lv-sycdn.kuwo.cn/ab0be2a16f9da45799dc6fc54931fb7c/683d919d/resource/30106/trackmedia/M500003qbqp32BOmjq.mp3?bitrate$128&format$mp3&user$');
+                    audio.loop = true;
+                }
+                
+                if (audio.paused) {
+                    audio.play();
+                    musicBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
+                    createFloatingHearts();
+                } else {
+                    audio.pause();
+                    musicBtn.innerHTML = '<i class="fas fa-music"></i> 播放音乐';
+                }
+            });
+            
+            // 主心点击效果
+            mainHeart.addEventListener('click', function() {
+                createFloatingHearts();
+            });
+        }
+        
+        // 打字机效果
+        function typeWriter() {
+            const title = document.getElementById('typedTitle');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const speed = 100; // 打字速度(ms)
+            
+            function typing() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                } else {
+                    // 打字完成后显示名字输入提示
+             if (name) {
+                        document.getElementById('loverName').textContent = name;
+                        document.getElementById('yourName').textContent = name;
+                    }
+                }
+            }
+            
+            typing();
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setupButtons();
+            typeWriter();
+            
+            // 每隔一段时间自动漂浮爱心
+            setInterval(createFloatingHearts, 5000);
+        });
+    </script>
+</body>
+</html>
