@@ -261,11 +261,7 @@
         
         <div class="seal"></div>
         
-        <div class="toolbar">
-            <button class="btn"><i class="fas fa-book-open"></i> 全文朗诵</button>
-            <button class="btn"><i class="fas fa-scroll"></i> 书法欣赏</button>
-            <button class="btn"><i class="fas fa-history"></i> 历史背景</button>
-        </div>
+        
     </div>
     
     <div class="footer">
@@ -290,18 +286,7 @@
                 });
             });
             
-            // 按钮交互效果
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    this.classList.add('clicked');
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 300);
-                    
-                    // 根据按钮文本执行不同操作
-                    const text = this.textContent.trim();
-                    alert(`已选择"${text}"功能，实际应用中这里将展示相关内容`);
+            
                 });
             });
         });
